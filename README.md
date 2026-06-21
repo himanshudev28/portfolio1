@@ -46,4 +46,4 @@ npm run build     # production build → dist/
 
 ---
 
-Built by [Himanshu Singh](https://github.com/himanshudev28) · B.Tech 2026 · Invertis University
+Built by [Himanshu Singh](https://github.com/himanshudev28) · 
