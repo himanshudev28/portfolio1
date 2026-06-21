@@ -2,7 +2,7 @@
 
 Award-winning personal portfolio website built with React, Three.js, and Framer Motion.
 
-**Live site:** https://github.com/himanshudev28/portfolio1
+**Live site:** -https://himanshudev1.vercel.app/
 
 ---
 
