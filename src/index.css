@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Rose-coral: the signature accent — completely unlike violet AI portfolios */
+  --rose:         #F43F5E;
+  --rose-mid:     #FB7185;
+  --rose-light:   #FDA4AF;
+  --rose-pale:    #FECDD3;
+  --rose-glow:    rgba(244, 63, 94, 0.14);
+  --rose-border:  rgba(244, 63, 94, 0.26);
+
+  /* Gold stays for achievements / secondary warmth */
+  --gold:         #D97706;
+  --gold-bg:      rgba(217, 119, 6, 0.1);
+
+  --green:        #22c55e;
+  --border:       rgba(242, 238, 232, 0.07);
+  --border-mid:   rgba(242, 238, 232, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  background: #0C0C0C;
+  color: #F2EEE8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0C0C0C; }
+::-webkit-scrollbar-thumb { background: rgba(244,63,94,0.35); border-radius: 3px; }
+
+:focus-visible {
+  outline: 2px solid #FB7185;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(242,238,232,0.04) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
