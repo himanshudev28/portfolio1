@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 /Users/himanshu/.claude/skills/ui-ux-pro-max/scripts/search.py \"developer portfolio modern creative fullstack web\" --design-system -p \"Himanshu Singh Portfolio\" -f markdown)",
+      "Bash(open *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

@@ -2,43 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme variables ── */
 :root {
-  /* Rose-coral: the signature accent — completely unlike violet AI portfolios */
-  --rose:         #F43F5E;
-  --rose-mid:     #FB7185;
-  --rose-light:   #FDA4AF;
-  --rose-pale:    #FECDD3;
-  --rose-glow:    rgba(244, 63, 94, 0.14);
-  --rose-border:  rgba(244, 63, 94, 0.26);
+  /* Brand (unchanged in both modes) */
+  --rose:        #F43F5E;
+  --rose-mid:    #FB7185;
+  --rose-glow:   rgba(244, 63, 94, 0.18);
+  --violet:      #8B5CF6;
+  --violet-glow: rgba(139, 92, 246, 0.12);
+  --gold:        #F59E0B;
 
-  /* Gold stays for achievements / secondary warmth */
-  --gold:         #D97706;
-  --gold-bg:      rgba(217, 119, 6, 0.1);
+  /* SINGH outlined-text stroke */
+  --name-stroke: rgba(251, 113, 133, 0.30);
 
-  --green:        #22c55e;
-  --border:       rgba(242, 238, 232, 0.07);
-  --border-mid:   rgba(242, 238, 232, 0.12);
+  /* Dark theme (default) — R G B for Tailwind alpha support */
+  --bg-deep:    8 8 8;
+  --bg-base:    15 15 15;
+  --bg-card:    20 20 20;
+  --bg-surface: 28 28 28;
+  --bg-hover:   33 33 33;
+  --ink:        242 238 232;
+  --ink-sub:    140 136 128;
+  --ink-muted:  74 70 64;
+}
+
+/* ── Light theme overrides ── */
+html.light {
+  --name-stroke: rgba(244, 63, 94, 0.50);
+
+  --bg-deep:    248 247 245;
+  --bg-base:    252 251 249;
+  --bg-card:    244 243 240;
+  --bg-surface: 236 235 232;
+  --bg-hover:   228 227 224;
+  --ink:        14 11 8;
+  --ink-sub:    80 74 70;
+  --ink-muted:  152 146 140;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
-  background: #0C0C0C;
-  color: #F2EEE8;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: rgb(var(--bg-deep));
+  color: rgb(var(--ink));
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0C0C0C; }
-::-webkit-scrollbar-thumb { background: rgba(244,63,94,0.35); border-radius: 3px; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(244,63,94,0.45); border-radius: 2px; }
 
 :focus-visible {
   outline: 2px solid #FB7185;
@@ -46,11 +64,230 @@ body {
   border-radius: 4px;
 }
 
+/* ── Dot grid background ── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(242,238,232,0.04) 1px, transparent 1px);
-  background-size: 38px 38px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+html.light .dot-grid {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(90deg, #FDA4AF 0%, #F43F5E 45%, #FB7185 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text-soft {
+  background: linear-gradient(135deg, #F2EEE8 0%, #A09890 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+html.light .gradient-text-soft {
+  background: linear-gradient(135deg, #0F0C09 0%, #55504C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(255,255,255,0.025);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+}
+html.light .glass {
+  background: rgba(255,255,255,0.90);
+  border: 1px solid rgba(0,0,0,0.09);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* ── Gradient border card ── */
+.grad-border {
+  position: relative;
+  border-radius: 16px;
+  background: rgb(var(--bg-card));
+}
+.grad-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(244,63,94,0.45) 0%,
+    rgba(139,92,246,0.25) 50%,
+    rgba(244,63,94,0.08) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+  z-index: 0;
+}
+.grad-border:hover::before { opacity: 1; }
+
+/* ── Ambient blob ── */
+.blob {
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ── Section label chip ── */
+.section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FB7185;
+  margin-bottom: 12px;
+}
+.section-chip::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: #F43F5E;
+}
+
+/* ── Tag pill ── */
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: #6B6560;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 4px 10px;
+  border-radius: 5px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tag:hover {
+  color: #FB7185;
+  border-color: rgba(244,63,94,0.35);
+}
+html.light .tag {
+  color: rgb(var(--ink-sub));
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.10);
+}
+html.light .tag:hover {
+  color: #E11D48;
+  border-color: rgba(244,63,94,0.40);
+}
+
+/* ── Timeline track ── */
+.timeline-track {
+  position: relative;
+}
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    rgba(244,63,94,0.6) 0%,
+    rgba(244,63,94,0.15) 60%,
+    transparent 100%);
+}
+
+/* ── Shimmer on hover ── */
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes liquidDrift {
+  0%   { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(400%)  skewX(-15deg); }
+}
+
+/* ── Animations ── */
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — flip white-opacity utilities to dark overlays
+   (specificity: html.light .class > .class — no !important)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Borders ── */
+html.light .border-white\/\[0\.05\] { border-color: rgba(0,0,0,0.06); }
+html.light .border-white\/\[0\.06\] { border-color: rgba(0,0,0,0.07); }
+html.light .border-white\/\[0\.07\] { border-color: rgba(0,0,0,0.09); }
+html.light .border-white\/\[0\.08\] { border-color: rgba(0,0,0,0.10); }
+html.light .border-white\/10        { border-color: rgba(0,0,0,0.12); }
+html.light .border-white\/\[0\.13\] { border-color: rgba(0,0,0,0.14); }
+html.light .border-white\/15        { border-color: rgba(0,0,0,0.16); }
+html.light .border-white\/20        { border-color: rgba(0,0,0,0.22); }
+
+@media (min-width: 768px) {
+  html.light .md\:border-white\/\[0\.06\] { border-color: rgba(0,0,0,0.07); }
+}
+
+/* ── Hover borders ── */
+html.light .hover\:border-white\/10:hover        { border-color: rgba(0,0,0,0.14); }
+html.light .hover\:border-white\/\[0\.13\]:hover { border-color: rgba(0,0,0,0.16); }
+html.light .hover\:border-white\/15:hover        { border-color: rgba(0,0,0,0.18); }
+
+/* ── Backgrounds ── */
+html.light .bg-white\/\[0\.025\] { background: rgba(0,0,0,0.02); }
+html.light .bg-white\/\[0\.03\]  { background: rgba(0,0,0,0.03); }
+html.light .bg-white\/\[0\.04\]  { background: rgba(0,0,0,0.04); }
+html.light .bg-white\/\[0\.05\]  { background: rgba(0,0,0,0.05); }
+
+/* ── Hover backgrounds ── */
+html.light .hover\:bg-white\/\[0\.03\]:hover { background: rgba(0,0,0,0.03); }
+html.light .hover\:bg-white\/\[0\.05\]:hover { background: rgba(0,0,0,0.05); }
+
+/* ── Rose tint backgrounds (hot skills, CTA hover) ── */
+html.light .bg-rose-950\/20              { background-color: rgba(244,63,94,0.09); }
+html.light .hover\:bg-rose-950\/20:hover { background-color: rgba(244,63,94,0.09); }
+html.light .hover\:bg-rose-950\/30:hover { background-color: rgba(244,63,94,0.14); }
+
+/* ── Rose text: light pinks → readable on cream ── */
+html.light .text-rose-300              { color: #C4183C; }
+html.light .hover\:text-rose-300:hover { color: #C4183C; }
+html.light .text-rose-400              { color: #E11D48; }
+html.light .hover\:text-rose-400:hover { color: #C4183C; }

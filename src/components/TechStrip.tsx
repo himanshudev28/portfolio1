@@ -8,16 +8,26 @@ const items = [...STACK, ...STACK]
 
 export default function TechStrip() {
   return (
-    <div className="overflow-hidden border-y border-white/[0.06] bg-bg-base py-3.5"
-         aria-label="Technology stack">
-      <div className="flex whitespace-nowrap animate-ticker hover:[animation-play-state:paused]"
-           aria-hidden="true">
+    <div
+      className="overflow-hidden py-4 bg-bg-base relative"
+      aria-label="Technology stack"
+    >
+      {/* Edge fades */}
+      <div className="absolute inset-y-0 left-0 w-24 z-10
+                      bg-gradient-to-r from-bg-base to-transparent pointer-events-none" aria-hidden />
+      <div className="absolute inset-y-0 right-0 w-24 z-10
+                      bg-gradient-to-l from-bg-base to-transparent pointer-events-none" aria-hidden />
+
+      <div
+        className="flex whitespace-nowrap animate-ticker hover:[animation-play-state:paused]"
+        aria-hidden="true"
+      >
         {items.map((tech, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-7 px-7
-                       font-mono text-[0.7rem] tracking-[0.1em] text-ink-muted
-                       after:content-['·'] after:text-rose-600/50"
+            className="inline-flex items-center gap-8 px-8
+                       font-mono text-[0.65rem] tracking-[0.12em] text-ink-muted
+                       after:content-['·'] after:text-rose-600/40"
           >
             {tech}
           </span>
