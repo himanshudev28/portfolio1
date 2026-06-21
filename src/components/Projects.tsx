@@ -6,6 +6,7 @@ const PROJECTS = [
     title: 'SeatSync',
     type: 'Team · Live',
     typeColor: 'text-green-400 bg-green-400/10',
+    liveUrl: 'https://seat-sync-five.vercel.app/',
     desc: 'A full-stack event ticketing platform with real-time interactive seat selection, conflict-safe 10-minute holds, and a complete admin dashboard for event management and revenue analytics.',
     bullets: [
       'Interactive seat maps with conflict-safe 10-minute timed holds',
@@ -21,6 +22,7 @@ const PROJECTS = [
     title: 'ChapterWave',
     type: 'Solo · Live',
     typeColor: 'text-amber-400 bg-amber-400/10',
+    liveUrl: 'https://inkwell-spark-64.lovable.app/',
     desc: 'An AI-powered eBook writing platform where authors create, organize, and publish books in a rich Markdown editor with drag-and-drop chapter management.',
     bullets: [
       'Drag-and-drop chapter management with live Markdown preview',
@@ -34,6 +36,7 @@ const PROJECTS = [
     title: 'Fried&Crispy',
     type: 'Solo · Vercel',
     typeColor: 'text-rose-400 bg-rose-400/10',
+    liveUrl: 'https://friedandcrispy.vercel.app/',
     desc: 'A modern responsive restaurant website with an immersive landing experience and rich menu showcase, deployed on Vercel with mobile-first reusable components.',
     bullets: [
       'Mobile-first reusable UI components with React + ShadCN',
@@ -154,11 +157,14 @@ export default function Projects() {
                                  transition-colors duration-200">
                       <GitHubIcon /> GitHub
                     </a>
-                    <a href="#" className="inline-flex items-center gap-1.5 font-mono text-[0.7rem]
-                                          tracking-[0.08em] uppercase text-rose-400 hover:text-ink
-                                          transition-colors duration-200">
-                      <ExternalIcon /> Live Demo
-                    </a>
+                    {p.liveUrl && (
+                      <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 font-mono text-[0.7rem]
+                                   tracking-[0.08em] uppercase text-rose-400 hover:text-ink
+                                   transition-colors duration-200">
+                        <ExternalIcon /> Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
 

@@ -40,9 +40,9 @@ npm run build     # production build → dist/
 
 ## Projects Featured
 
-- **SeatSync** — Full-stack event ticketing with real-time seat selection and admin dashboard
+- **SeatSync** — Full-stack event ticketing with real-time seat selection and admin dashboard (Live: https://seat-sync-five.vercel.app/)
 - **ChapterWave** — AI-powered eBook writing platform with drag-and-drop chapter management
-- **Fried&Crispy** — Responsive restaurant website with rich landing experience
+- **Fried&Crispy** — Responsive restaurant website with rich landing experience (Live: https://friedandcrispy.vercel.app/ )
 
 ---
 
